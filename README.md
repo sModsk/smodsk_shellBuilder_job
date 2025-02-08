@@ -18,3 +18,7 @@ This script utilizes the [`smodsk_shellBuilder`](https://smodsk.tebex.io/) scrip
 1. Ensure [`smodsk_shellBuilder`](https://smodsk.tebex.io/) is installed on your server.
 2. Add this script to your resources folder.
 3. Start the script in your server configuration.
+
+
+## TODO
+- Add QB-Core support.
