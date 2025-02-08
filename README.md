@@ -2,7 +2,7 @@
 
 ## Description
 
-This script utilizes the [`smodsk_shellBuilder`](https://smodsk.tebex.io/) script to provide players with the ability to create and publish shell building projects.
+This script utilizes the [`smodsk_shellBuilder`](https://smodsk.tebex.io/package/6674161) script to provide players with the ability to create and publish shell building projects.
 
 ## Features
 
@@ -11,11 +11,11 @@ This script utilizes the [`smodsk_shellBuilder`](https://smodsk.tebex.io/) scrip
 
 ## Requirements
 
-- [`smodsk_shellBuilder`](https://smodsk.tebex.io/) script must be installed and properly configured.
+- [`smodsk_shellBuilder`](https://smodsk.tebex.io/package/6674161) script must be installed and properly configured.
 
 ## Installation
 
-1. Ensure [`smodsk_shellBuilder`](https://smodsk.tebex.io/) is installed on your server.
+1. Ensure [`smodsk_shellBuilder`](https://smodsk.tebex.io/package/6674161) is installed on your server.
 2. Add this script to your resources folder.
 3. Start the script in your server configuration.
 
