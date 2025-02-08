@@ -59,7 +59,6 @@ if lib then
      
 
     OpenMenuPreview = function ()
-        print("MENU PREVIEW")
         lib.showContext('sm_project_menu_preview')
     end
 elseif QBCore then

@@ -9,7 +9,6 @@ if lib then
         local selection = {}
         for i=1,#Config.shellSizes do
             local data = Config.shellSizes[i]
-            print(data.locale)
             table.insert(selection, {label = GetLocale(data.locale).." ("..data.size[1].."x"..data.size[2]..")", value = data.size})
         end
 

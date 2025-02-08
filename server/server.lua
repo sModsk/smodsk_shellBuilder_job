@@ -61,8 +61,6 @@ end
 
 local function getFinishedProject(id)
     loadFinishedProjects()
-
-    print("getFinishedProject", json.encode(finishedProjects))
     for i=1,#finishedProjects do
         if finishedProjects[i].id == id then
             return finishedProjects[i]
@@ -110,7 +108,6 @@ end
 
 local function publishProject(id)
     local project = getProject(id)
-    print("Publish project", project)
     if project then
         exports["smodsk_shellBuilder"]:SetPublic(id, true)
         removeProject(id)

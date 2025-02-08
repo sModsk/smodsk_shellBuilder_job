@@ -140,7 +140,6 @@ if lib then
      
 
     OpenMenu = function ()
-        print("Open normal menus")
         lib.showContext('sm_project_menu')
     end
 elseif QBCore then

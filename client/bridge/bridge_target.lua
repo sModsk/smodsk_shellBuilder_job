@@ -10,7 +10,6 @@ function CreateTargetZone(data)
                 canInteract = v.canInteract
             })
         end
-        print(data.coords, data.radius)
         ox_target:addSphereZone({
             name = data.name,
             coords = data.coords,
