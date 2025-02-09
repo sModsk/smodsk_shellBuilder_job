@@ -6,13 +6,13 @@ Config = {
 
     menuSettings = {
         coords = vec3(-1070.789, -2868.408, 13.951),
-        radius = 1.0
+        radius = 1.5
     },
 
     -- From this menu other players can enter to shells that are marked for previewing
     previewMenuSettings = {
         coords = vec3(-1072.637, -2866.397, 13.951),
-        radius = 1.0
+        radius = 1.5
     },
 
     shellSizes = {

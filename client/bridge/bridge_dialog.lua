@@ -46,5 +46,62 @@ if lib then
     end
     
 elseif QBCore then
-    -- TODO --
+    OpenNewProjectDialog = function()
+        local selection = {}
+        for i=1,#Config.shellSizes do
+            local data = Config.shellSizes[i]
+            table.insert(selection, {text = GetLocale(data.locale).." ("..data.size[1].."x"..data.size[2]..")", value = data.size})
+        end
+
+        local dialog =  exports['qb-input']:ShowInput(
+            {
+                header = GetLocale("CREATE_PROJECT"), 
+                inputs = {
+                    {
+                        type = 'text',
+                        text = GetLocale("PROJECT_NAME"), 
+                        name = "name",
+                        isRequired  = true,
+                    },
+                    {
+                        type = 'select', 
+                        text = GetLocale("PROJECT_SIZE"), 
+                        isRequired  = true,
+                        name = "size",
+                        options = selection
+                    },
+            }
+        })
+        if dialog == nil then return false end
+        
+        local t  = {}
+        for num in string.gmatch(dialog.size, "%d+") do
+            table.insert(t, tonumber(num))
+        end
+
+        return {
+            dialog.name, t
+        }
+    end
+
+    OpenPublishDialog = function(data)
+        return exports['qb-input']:ShowInput({
+            header = GetLocale("PUBLISH_PROJECT"),
+            inputs = {}
+        })
+    end
+
+    OpenUnpublishDialog = function(data)
+        return exports['qb-input']:ShowInput({
+            header = GetLocale("UNPUBLISH_PROJECT"),
+            inputs = {}
+        })
+    end
+
+    OpenDestroyDialog = function(data)
+        return exports['qb-input']:ShowInput({
+            header = GetLocale("DESTROY_PROJECT"),
+            inputs = {}
+        })
+    end
 end

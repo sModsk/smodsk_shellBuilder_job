@@ -54,6 +54,52 @@ if lib then
                     end)
                 end
             },
+            {
+                title = GetLocale("PUBLISHED_PROJECTS"),
+                onSelect = function()
+                    RequestDataFromServer("smodsk_shellBuilder_job:GetPublishedProjects", {}, function(projects)
+                        local options = {}
+                        local index = 1
+                        for i=1,#projects do
+                            local project = projects[i]
+                            options[index] = {
+                                title = project.name,
+                                metadata = {
+                                    id = project.id,
+                                    size = project.size[1].."x"..project.size[2]
+                                },
+                                onSelect = function()
+                                    local options = {}
+                                    table.insert(options, {
+                                        title = GetLocale("ENTER_PROJECT"),
+                                        onSelect = function()
+                                            SpawnShell(project.id)
+                                        end
+                                    })
+                                    lib.registerContext({
+                                        id = "sm_project_menu_preview2",
+                                        title = project.name,
+                                        menu = "sm_project_menu_1",
+                                        options = options
+                                    })
+                                    
+                                    lib.showContext('sm_project_menu_preview2')
+                                end
+                            }
+                            index += 1
+                        end
+
+                        lib.registerContext({
+                            id = "sm_project_menu_preview1",
+                            title = GetLocale("PUBLISHED_PROJECTS"),
+                            menu = "sm_project_menu_preview",
+                            options = options
+                        })
+
+                        lib.showContext('sm_project_menu_preview1')
+                    end)
+                end
+            },
         }
     })
      
