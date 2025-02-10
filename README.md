@@ -10,7 +10,7 @@ This script utilizes the [`smodsk_shellBuilder`](https://smodsk.tebex.io/package
 - No built-in society or job management; this script is meant to integrate with an existing job system on your server.
 
 ## Requirements
--[`ox_lib`](https://github.com/overextended/ox_lib)
+- [`ox_lib`](https://github.com/overextended/ox_lib)
 - [`smodsk_shellBuilder`](https://smodsk.tebex.io/package/6674161) script must be installed and properly configured.
 
 ## Installation
