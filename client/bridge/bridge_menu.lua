@@ -155,7 +155,7 @@ if lib then
     end
 elseif QBCore then
 
-
+    -- QB 
 
     RegisterNetEvent("smodsk_shellBuilder_job:CREATE_PROJECT", function ()
         local project = OpenNewProjectDialog()
@@ -182,8 +182,9 @@ elseif QBCore then
        local project = data.project
        local options = {}
 
+
        table.insert(options, {
-            title = GetLocale("ENTER_PROJECT"),
+            header = GetLocale("ENTER_PROJECT"),
             params = {
                 event = "smodsk_shellBuilder_job:ACTIVE_PROJECT:SELECT",
                 args = {
@@ -230,6 +231,7 @@ elseif QBCore then
             })
         end 
 
+        exports['qb-menu']:openMenu(options)
     end)
 
     RegisterNetEvent("smodsk_shellBuilder_job:ACTIVE_PROJECTS", function ()
@@ -258,23 +260,25 @@ elseif QBCore then
     end)
 
 
-    RegisterNetEvent("smodsk_shellBuilder_job:PUBLISHED_PROJECT:SELECT", function (data)
-        TriggerServerEvent("smodsk_shellBuilder_job:UnpublishProject", data.project.id)
+    RegisterNetEvent("smodsk_shellBuilder_job:PUBLISHED_PROJECT:ENTER", function (data)
+        SpawnShell(data.project.id) 
     end)
 
     RegisterNetEvent("smodsk_shellBuilder_job:PUBLISHED_PROJECT", function(data)
         local project = data.project
         local options = {
             {
-                header = GetLocale("UNPUBLISH_PROJECT"),
+                header = GetLocale("ENTER_PROJECT"),
                 params = {
-                    event = "smodsk_shellBuilder_job:ACTIVE_PROJECT:SELECT",
+                    event = "smodsk_shellBuilder_job:PUBLISHED_PROJECT:ENTER",
                     args = {
                        project = project
                     }
                }
             }
         }
+
+        exports['qb-menu']:openMenu(options)
     end)
 
     RegisterNetEvent("smodsk_shellBuilder_job:PUBLISHED_PROJECTS", function ()

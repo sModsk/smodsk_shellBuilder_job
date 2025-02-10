@@ -74,7 +74,7 @@ function SpawnShell(id)
                 return CanOpenMenu()
             end,
             canTogglePublic = function()
-                return CanOpenMenu()
+                return false--CanOpenMenu()
             end,
             canBuild = function()
                 return CanOpenMenu()

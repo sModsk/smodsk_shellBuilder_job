@@ -154,7 +154,7 @@ RegisterServerEvent("smodsk_shellBuilder_job:CreateProject", function(project)
     }
 
     addProject(project)
-    local success = exports["smodsk_shellBuilder"]:CreateNewShell(project.id, project.size)
+    local success, id = exports["smodsk_shellBuilder"]:CreateNewShell(project.id, project.size, project.name)
     notification(source, GetLocale("PROJECT_CREATED"), true)
 end)
 

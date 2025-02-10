@@ -1,5 +1,4 @@
 Wait(100)
-
 OpenMenuPreview = nil
 if lib then
     lib.registerContext({
@@ -108,7 +107,70 @@ if lib then
         lib.showContext('sm_project_menu_preview')
     end
 elseif QBCore then
+
+    RegisterNetEvent("smodsk_shellBuilder_job:PREVIEW:ENTER", function(data)
+        SpawnShell(data.project.id) 
+    end)
+
+
+    RegisterNetEvent("smodsk_shellBuilder_job:PREVIEW:ACTIVE_PROJECTS", function()
+        RequestDataFromServer("smodsk_shellBuilder_job:GetActiveProjects", {}, function(projects)
+            local options = {}
+            local index = 1
+            for i=1,#projects do
+                local project = projects[i]
+                if project.preview then
+                    options[index] = {
+                        header = project.name,
+                        params = {
+                            event = "smodsk_shellBuilder_job:PREVIEW:ENTER",
+                            args = {
+                                project = project
+                            }
+                        }   
+                    }
+                    index += 1
+                end
+            end
+
+            exports['qb-menu']:openMenu(options)
+        end)
+    end)
+
+    RegisterNetEvent("smodsk_shellBuilder_job:PREVIEW:PUBLISHED_PROJECTS", function()
+        RequestDataFromServer("smodsk_shellBuilder_job:GetPublishedProjects", {}, function(projects)
+            local options = {}
+            local index = 1
+            for i=1,#projects do
+                local project = projects[i]
+                    options[index] = {
+                        header = project.name,
+                        params = {
+                            event = "smodsk_shellBuilder_job:PREVIEW:ENTER",
+                            args = {
+                                project = project
+                            }
+                        }   
+                    }
+                index += 1
+            end
+
+            exports['qb-menu']:openMenu(options)
+        end)
+    end)
+
+
+
     OpenMenuPreview = function ()
-        -- TODO --
+        exports['qb-menu']:openMenu({
+            {
+                header =  GetLocale("ACTIVE_PROJECTS"),
+                params = { event = "smodsk_shellBuilder_job:PREVIEW:ACTIVE_PROJECTS"}
+            }, 
+            {
+                header =  GetLocale("PUBLISHED_PROJECTS"),
+                params = { event = "smodsk_shellBuilder_job:PREVIEW:PUBLISHED_PROJECTS"}
+            },
+        })
     end
 end

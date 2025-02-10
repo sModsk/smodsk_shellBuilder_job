@@ -1,5 +1,4 @@
-Wait(1000)
-
+Wait(100)
 OpenNewProjectDialog = nil
 OpenPublishDialog = nil
 OpenUnpublishDialog = nil
@@ -73,10 +72,14 @@ elseif QBCore then
             }
         })
         if dialog == nil then return false end
-        
-        local t  = {}
-        for num in string.gmatch(dialog.size, "%d+") do
-            table.insert(t, tonumber(num))
+
+        local t = {}
+        if type(dialog.size) == "string" then
+            for num in string.gmatch(dialog.size, "%d+") do
+                table.insert(t, tonumber(num))
+            end
+        else
+            t = dialog.size
         end
 
         return {
